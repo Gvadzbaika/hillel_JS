@@ -38,8 +38,9 @@ true + false
 // result: 1
 
 '4px' - 3
-// '4px' - 3 = NaN
 // result: NaN
+// Number('4px') is Not a number
+// so '4px' - 3 is NaN
 
 '4' - 3
 // 4 - 3 = 1
@@ -71,14 +72,20 @@ true + false
 
 undefined + 1;
 // result: NaN
+// Number(undefined) is Not a number
+// so undefined + 1 is NaN
 
 'true' == true
 // result: false
 // string 'true' != true
+// if one of the oprends is a boolean and other is not, boolean is converter to number 0 or 1. 
+// so true == "true" is false.
 
 false == 'false'
 // result: false
 // false != string 'false'
+// if one of the oprends is a boolean and other is not, boolean is converter to number 0 or 1. 
+// so false == 'false' is false.
 
 null == ''
 // returns false
