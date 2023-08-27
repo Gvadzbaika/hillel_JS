@@ -9,7 +9,7 @@
 // result: 42number
 
 null + 1
-//    + 1 = 1
+// 0 + 1 = 1
 // result: 1
 
 'five' + + 'two'
