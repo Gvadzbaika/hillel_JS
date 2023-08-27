@@ -78,13 +78,13 @@ undefined + 1;
 'true' == true
 // result: false
 // string 'true' != true
-// if one of the oprends is a boolean and other is not, boolean is converter to number 0 or 1. 
+// if one of the operands is a boolean and other is not, boolean is converter to number 0 or 1. 
 // so true == "true" is false.
 
 false == 'false'
 // result: false
 // false != string 'false'
-// if one of the oprends is a boolean and other is not, boolean is converter to number 0 or 1. 
+// if one of the operands is a boolean and other is not, boolean is converter to number 0 or 1. 
 // so false == 'false' is false.
 
 null == ''
