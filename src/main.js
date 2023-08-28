@@ -25,6 +25,7 @@ function isLeapYear (year) {
     return new Date(year, 1, 29).getMonth() == 1
 }
 let year = +prompt("Enter year:");
+
 if(isNaN(year)){
     console.log("Incorrect value")
 }
@@ -39,7 +40,6 @@ else {
 
 let age = +prompt('Enter age');
 let count = age % 100;
-
 
 if (count >= 10 && count <= 20){
     console.log (age + " років")
