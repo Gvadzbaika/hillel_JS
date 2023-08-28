@@ -18,6 +18,7 @@ else {
     console.log("Sprry! The number is not divisible by 3, by 5, or by 3 and 5")    
 } 
 
+
 //task 2
 
 function isLeapYear (year) {
@@ -45,7 +46,7 @@ if (count >= 10 && count <= 20){
 }
 else{
     count = age % 10;
-
+    
 if (count === 1){
     console.log (age + " рік")
 }
