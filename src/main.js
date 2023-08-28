@@ -1,151 +1,58 @@
-'number' + 23 + 32 
-//'number' + 23 = number23 
-// number23 + 32 = number2332
-// result: number2332
+//Task 1
 
-41 + 1 + 'number'
-// 41 + 1 = 42
-// 42 + 'number' = 42number
-// result: 42number
+let number = +prompt('Enter number')
 
-null + 1
-//    + 1 = 1
-// result: 1
+if (number % 3 == 0 && number % 5 == 0 ){
+    console.log("FizzBuzz");
+} 
+else if (number % 3 == 0){
+    console.log("Fizz");
+}
+else if(number % 5 == 0){
+    console.log("Buzz");
+}
+else if (isNaN(number)){
+    console.log("Incorrect value")    
+}
+else {
+    console.log("Sprry! The number is not divisible by 3, by 5, or by 3 and 5")    
+} 
 
-'five' + + 'two'
-// +'two' = NaN
-// five + NaN = fiveNaN
-// result: fiveNaN
+//task 2
 
-2 && 7
-// 2 = true AND 7 = true 
-// returns 7
+function isLeapYear (year) {
+    return new Date(year, 1, 29).getMonth() == 1
+}
+let year = +prompt("Enter year:");
+if(isNaN(year)){
+    console.log("Incorrect value")
+}
+else if(isLeapYear(year)){
+    console.log("Year " + year + " - A leap year.");
+} 
+else {
+    console.log("Year " + year + " - Not a leap year.");
+}
 
-+'40' + +'2';
-// +'40' = 40
-// +'2' = 2
-// 40 + 2 = 42
-// result: 42
+//Task 3
 
-'10' - 5 === 6;
-// '10' - 5 = 5
-// 5 === 6 => false
-// result: false
+let age = +prompt('Enter age');
+let count = age % 100;
 
-true + false
-// Number(true) = 1 and Number(false) = 0
-// 1 + 0 = 1
-// result: 1
 
-'4px' - 3
-// result: NaN
-// Number('4px') is Not a number
-// so '4px' - 3 is NaN
+if (count >= 10 && count <= 20){
+    console.log (age + " років")
+}
+else{
+    count = age % 10;
 
-'4' - 3
-// 4 - 3 = 1
-// result: 1
-
-'2' + 3 ** 2;
-// 3 в степени 2 = 9
-// '2'+ 9 = 29
-// result: 29
-
-12 / '6'
-// 12 / 6 = 2
-// result: 2
-
-23 + 42 + 'number'
-// 23 + 42 = 65
-// 65 + 'number' = 65number
-// result: 65number
-
-'10' + (5 === 6);
-// (5 === 6) - false
-// '10' + false = 10false
-// result: 10false
-
-'number' + 15 + 3
-//'number' + 15 = number15
-// number15 + 3 = number153
-// result: number153
-
-undefined + 1;
-// result: NaN
-// Number(undefined) is Not a number
-// so undefined + 1 is NaN
-
-'true' == true
-// result: false
-// string 'true' != true
-// if one of the oprends is a boolean and other is not, boolean is converter to number 0 or 1. 
-// so true == "true" is false.
-
-false == 'false'
-// result: false
-// false != string 'false'
-// if one of the oprends is a boolean and other is not, boolean is converter to number 0 or 1. 
-// so false == 'false' is false.
-
-null == ''
-// returns false
-// null != string ''
-
-3 ** (9 / 3);
-// 9 / 3 = 3
-// 3  в степени 3 = 27
-// result: 27
-
-!!'false' == !!'true'
-// !(!'false') == !(!'true')
-// !(false) == !(false)
-// true == true => true
-// result: true
-
-0 || '0' && 1
-// 'o' && 1 => true AND true => returns  1 (1->true)
-// 0 || 1 => false OR true => returns 1 
-// result: 1
-
-1 < 2 < 3
-// 1 < 2 => true
-// 2 < 3 => true
-// returns true
-
-'foo'+ + +'bar'
-// +'bar' = NaN
-// foo + NaN = fooNaN
-
-3 ** 2 / 3;
-// 3 во 2й степени = 9
-// 9 / 3 = 3
-// result: 3
-
-1 < 2 > 3
-// 1 < 2 => true
-// 2 > 3 => false
-// returns false
-
-(+null == false) < 1;
-// +null = 0
-// 0 = false
-// false == false => true
-// true < 1  => false
-// returns false
-
-false && true || true
-//false && true => false
-// false || true => true
-// returns true
-
-false && (true || true);
-// true || true => true
-// false && true => false
-// returns false
-
-(+null == false) < 1 ** 5;
-// +null = o
-// 0 = false
-// (false == false) returns: true
-// true < 1 => false
-// returns false
+if (count === 1){
+    console.log (age + " рік")
+}
+else if(count >= 2 && count <=4 ){
+    console.log (age + " роки")
+}
+else {
+    console.log (age + " років")
+}
+}
