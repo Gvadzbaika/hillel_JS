@@ -1,59 +1,65 @@
 //Task 1
-
-let number = +prompt('Enter number')
-
-if (number % 3 == 0 && number % 5 == 0 ){
-    console.log("FizzBuzz");
-} 
-else if (number % 3 == 0){
-    console.log("Fizz");
+let n = +prompt('Enter number')
+function isPrime(n) { 
+    let k = Math.sqrt(n); 
+    for(let i = 2; i <= k; i++)
+        if(n % i === 0)
+            return false;
+    return true;
 }
-else if(number % 5 == 0){
-    console.log("Buzz");
-}
-else if (isNaN(number)){
-    console.log("Incorrect value")    
-}
-else {
-    console.log("Sprry! The number is not divisible by 3, by 5, or by 3 and 5")    
-} 
 
+if (isNaN(n)){
+    alert("Incorrect value")
+}    
+else if (isPrime(n)){
+    alert("Число " + n +" є простим числом")
+}
+else{
+    alert("Число " + n +" не є простим числом")
+}
 
 //task 2
 
-function isLeapYear (year) {
-    return new Date(year, 1, 29).getMonth() == 1
-}
-let year = +prompt("Enter year:");
+function getPerfect(a, b) {
+    let result = [];
+    for (let i = a; i < b; i++) {
+      sum = 0;
+      for (let n = 1; n <= i/2; n++) {
+        if (i % n === 0) sum += n;
+      }
+      if (i === sum) result.push(i);
+    }
+    return result;
+  }
 
-if(isNaN(year)){
+  let num = +prompt('Enter number')
+
+  if (isNaN(num)){
     console.log("Incorrect value")
-}
-else if(isLeapYear(year)){
-    console.log("Year " + year + " - A leap year.");
-} 
-else {
-    console.log("Year " + year + " - Not a leap year.");
-}
+}    
+  else {console.log(getPerfect(1, num))};
 
 //Task 3
 
-let age = +prompt('Enter age');
-let count = age % 100;
+ let height = +prompt('Enter height of triagle'); 
+ 
+ function printTriangle(){
+    let print = "";
+ for (let n = 1; n <= height; n++) {
+      for (let space = 1; space <= height - n; space++) {
+    print += " ";
+   } 
+      for (let num = 1; num <= 2 * n - 1; num++) {
+    print += "*";
+   }
+   print += "\n";
+}
+return print
+}
 
-if (count >= 10 && count <= 20){
-    console.log (age + " років")
-}
-else{
-    count = age % 10;
-    
-if (count === 1){
-    console.log (age + " рік")
-}
-else if(count >= 2 && count <=4 ){
-    console.log (age + " роки")
-}
-else {
-    console.log (age + " років")
-}
-}
+if (isNaN(height)){
+    alert("Incorrect value")
+}    
+  else {
+    alert(printTriangle(height))
+};
