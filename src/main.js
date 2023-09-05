@@ -24,15 +24,15 @@ console.log (IsPalindrome("ollo"));
 
 //Task 3
 
-function nod(n, m) {
+function findGCD(n, m) {
   if(m > 0) { 
     let k = n%m;
-    return nod(m, k); 
+    return findGCD(m, k); 
   } 
   else { 
     return n;  
   }
 };
-  console.log(nod(10, 5));
-  console.log(nod(42, 24));
-  console.log(nod(12, 18));
+  console.log(findGCD(10, 5));
+  console.log(findGCD(42, 24));
+  console.log(findGCD(12, 18));
