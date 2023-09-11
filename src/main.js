@@ -1,38 +1,54 @@
 //Task 1
 
-function reverseString(str) {
+function doubleLetter(str) {
   let newString = "";
-  for (let i = str.length - 1; i >= 0; i--) {
-    newString += str[i];
+  for (i=0; i<str.length; i++) {
+    newString += str[i].repeat(2);
   }
   return newString;
 };
-console.log (reverseString("hello"));
+console.log (doubleLetter("hello"));
 
 //task 2
 
-function IsPalindrome(str) {
-  let check = '';
-  for (let i = str.length - 1; i >= 0; --i) {
-    check += str[i];
+function padString(str, length, symbol, toLeft) {
+
+if (length<=str.length){
+    return str}
+    
+  else  if (toLeft==true) {
+    
+    return str.padStart(length,symbol)
+  } 
+  else{
+    return str.padEnd(length,symbol)
   }
-  return str == check;
 };
-console.log (IsPalindrome("hello"));
-console.log (IsPalindrome("ollo"));
+
+console.log (padString("Sun", 10, "*"));
+console.log (padString("Sun", 6, "*", true));
+console.log (padString("Sun", 10, "*", false));
+console.log (padString("Sun", 6, "/", true));
+console.log (padString("Sun", 10));
+console.log (padString("Sun", 1, "*", true));
+
+
+
 
 
 //Task 3
 
-function findGCD(n, m) {
-  if(m > 0) { 
-    let k = n%m;
-    return findGCD(m, k); 
-  } 
-  else { 
-    return n;  
+  function toCamelCase(str, separator) {
+    const words = str.split(separator);
+    return words.reduce((result, word, index) => {
+      if (index === 0) {
+        return result + word;
+      }
+      return result + word.charAt(0).toUpperCase() + word.slice(1);
+    }, '');
   }
-};
-  console.log(findGCD(10, 5));
-  console.log(findGCD(42, 24));
-  console.log(findGCD(12, 18));
+  
+  console.log(toCamelCase("hello-world", '-')); 
+  console.log(toCamelCase("hello_world", '_'));
+  console.log(toCamelCase("hello-world-this-is-camel-case", "-")); 
+  console.log(toCamelCase("hello world this is camel case", " "));
