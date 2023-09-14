@@ -8,8 +8,8 @@ function reverseArray(arr) {
   reverseArr.push(arr[i]);
   return reverseArr;
 }
-
-console.log (reverseArray(originalArray));
+const reversedArray = reverseArray(originalArray);
+console.log (reversedArray);
 
 //task 2
 
@@ -41,7 +41,7 @@ function calculateAverageGrade(students){
   for(let i = 0; i<students.length; i++){
       all.push(students[i].grade)
   }
-  all = all.flat()
+
   return all.reduce((p,n)=>p+n)/all.length
 }
   
