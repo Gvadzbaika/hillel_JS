@@ -1,54 +1,48 @@
 //Task 1
 
-function doubleLetter(str) {
-  let newString = "";
-  for (i=0; i<str.length; i++) {
-    newString += str[i].repeat(2);
-  }
-  return newString;
-};
-console.log (doubleLetter("hello"));
+const originalArray = [1, 2, 3, 4, 5];
+
+function reverseArray(arr) {
+  const reverseArr = [];
+  for (let i = arr.length - 1; i >= 0; i--)
+  reverseArr.push(arr[i]);
+  return reverseArr;
+}
+
+console.log (reverseArray(originalArray));
 
 //task 2
 
-function padString(str, length, symbol, toLeft) {
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [3, 4, 5, 6, 7];
 
-if (length<=str.length){
-    return str}
-    
-  else  if (toLeft==true) {
-    
-    return str.padStart(length,symbol)
-  } 
-  else{
-    return str.padEnd(length,symbol)
-  }
-};
+function uniqueValues (array1, array2) {
+  const mergedArray = [...array1, ...array2];
+  const mergedArrayWithoutRepeat = [...new Set([...mergedArray])];
+  return mergedArrayWithoutRepeat
+ }
 
-console.log (padString("Sun", 10, "*"));
-console.log (padString("Sun", 6, "*", true));
-console.log (padString("Sun", 10, "*", false));
-console.log (padString("Sun", 6, "/", true));
-console.log (padString("Sun", 10));
-console.log (padString("Sun", 1, "*", true));
-
-
-
+console.log(uniqueValues(array1, array2));
+console.log(uniqueValues(['a', 'b'], ['a', 'b', 'c', 'd']));
+console.log(uniqueValues("abcd", "abcde"));
 
 
 //Task 3
 
-  function toCamelCase(str, separator) {
-    const words = str.split(separator);
-    return words.reduce((result, word, index) => {
-      if (index === 0) {
-        return result + word;
-      }
-      return result + word.charAt(0).toUpperCase() + word.slice(1);
-    }, '');
+const students = [
+	{ name: "Alice", age: 20, grade: 4.5 },
+	{ name: "Bob", age: 21, grade: 3.9 },
+	{ name: "Charlie", age: 19, grade: 4.8 }
+];
+
+function calculateAverageGrade(students){
+    
+  let all = []
+  for(let i = 0; i<students.length; i++){
+      all.push(students[i].grade)
   }
+  all = all.flat()
+  return all.reduce((p,n)=>p+n)/all.length
+}
   
-  console.log(toCamelCase("hello-world", '-')); 
-  console.log(toCamelCase("hello_world", '_'));
-  console.log(toCamelCase("hello-world-this-is-camel-case", "-")); 
-  console.log(toCamelCase("hello world this is camel case", " "));
+console.log(calculateAverageGrade(students));
