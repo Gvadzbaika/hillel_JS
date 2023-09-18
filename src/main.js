@@ -1,48 +1,46 @@
 //Task 1
 
-const originalArray = [1, 2, 3, 4, 5];
+const words = ["apple", "banaNA", "kiWi", "ORANGE"];
 
-function reverseArray(arr) {
-  const reverseArr = [];
-  for (let i = arr.length - 1; i >= 0; i--)
-  reverseArr.push(arr[i]);
-  return reverseArr;
+function capitalizeStrings(arr){
+    const capitalizeStringsArr =[];
+    for (let word of arr) {
+        word = word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+        capitalizeStringsArr.push(word);
 }
-const reversedArray = reverseArray(originalArray);
-console.log (reversedArray);
+return capitalizeStringsArr;
+}
+console.log(capitalizeStrings(words));
 
-//task 2
+
+// Task 2
 
 const array1 = [1, 2, 3, 4, 5];
 const array2 = [3, 4, 5, 6, 7];
 
-function uniqueValues (array1, array2) {
-  const mergedArray = [...array1, ...array2];
-  const mergedArrayWithoutRepeat = [...new Set([...mergedArray])];
-  return mergedArrayWithoutRepeat
- }
+function findCommonElements(arr1, arr2){
+    return arr1.filter(function(n) {
+        return arr2.indexOf(n) !== -1;
+      });
+}
 
-console.log(uniqueValues(array1, array2));
-console.log(uniqueValues(['a', 'b'], ['a', 'b', 'c', 'd']));
-console.log(uniqueValues("abcd", "abcde"));
-
+console.log(findCommonElements(array1, array2)); // [3, 4, 5]
 
 //Task 3
 
-const students = [
-	{ name: "Alice", age: 20, grade: 4.5 },
-	{ name: "Bob", age: 21, grade: 3.9 },
-	{ name: "Charlie", age: 19, grade: 4.8 }
-];
+const numbers = [1, 2, 3, 4, 5];
 
-function calculateAverageGrade(students){
-    
-  let all = []
-  for(let i = 0; i<students.length; i++){
-      all.push(students[i].grade)
+function analyzeArray(arr) {
+    const sum = arr.reduce((acc, num) => acc + num, 0);
+    const min = Math.min(...arr);
+    const max = Math.max(...arr);
+  
+    return {
+      sum : sum,
+      average: sum / arr.length,
+      min: min,
+      max: max,
+    };
   }
 
-  return all.reduce((p,n)=>p+n)/all.length
-}
-  
-console.log(calculateAverageGrade(students));
+console.log(analyzeArray(numbers)); // { sum: 15, average: 3, min: 1, max: 5 }
