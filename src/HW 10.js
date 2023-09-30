@@ -47,6 +47,9 @@
         console.log(iterator);
     }
 
+    for (const {source} of result ){
+        console.log(source);
+    }
 
 
    
