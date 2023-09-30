@@ -51,6 +51,34 @@
         console.log(source);
     }
 
+    //Task 2
+    function slow(x) {
+        alert(`Called with ${x}`);
+        return x;
+      }
+      
+      function memoize(fn) {
+        let cache = new Map();
+      
+        return function(x) {
+          if (cache.has(x)) {   
+            return cache.get(x);
+          }
+      
+          let result = fn(x); 
+      
+          cache.set(x, result); 
+          return result;
+        };
+      }
+      
+      slow = memoize(slow);
+      
+      alert( slow(1) ); // slow(1) кешируем
+      alert( "Again: " + slow(1) ); // возвращаем из кеша
+      
+      alert( slow(2) ); // slow(2) кешируем
+      alert( "Again: " + slow(2) ); // возвращаем из кеша
 
    
     
