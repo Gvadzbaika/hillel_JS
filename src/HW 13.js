@@ -82,5 +82,5 @@ function Student(name, surname, birthYear) {
   
   console.log(student1.getFullInfo());
   console.log("Age:", student1.getAge());
-  console.log("Average Marks for Math:", student1.getAverageMarks("Java"));
-  console.log("Average Attendance for Math:", student1.getAverageAttendance("Java"));
+  console.log("Average Marks for Java", student1.getAverageMarks("Java"));
+  console.log("Average Attendance for Java:", student1.getAverageAttendance("Java"));
