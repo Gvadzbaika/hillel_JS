@@ -1,65 +1,67 @@
-function Student (firstName, lastName, year, marks= [], attendance = [], Cours) {
-     this.firstName =firstName,
-     this.lastName = lastName,
-     this.year = year,
-     this.marks = marks,
-     this.attendance = attendance,
-     this.Cours = Cours;
-} 
+function Student (name, surname, birthday) {
+    this.name = name;
+    this.surname = surname;
+    this.birthday = birthday;
+    this.marks = {};
+    this.attendance = {};
+    this.courses = [];
+   }
+
+   Student.prototype.addMark = function (mark, course) {
+
+    if (!this.marks[course]) {
+      this.marks[course] = [];  
+   }
+   
+    if (!Object.hasOwn(this.marks, course)) {
+      this.marks[course] = [];
+    }
+    
+    this.marks[course].push(mark);
+    }
+
+    Student.prototype.addAttendance = function (present, course) {
+ 
+        if (!this.attendance[course]) {
+         this.attendance[course] = [];
+        }      
+       this.attendance[course].push(present)
+       } 
 
 
-
-Student.prototype.addMark = function(newMark){
-    return this.marks.push(newMark);
+       Student.prototype.getAverageMarks = function() {
+    
+}
+       
+       Student.prototype.getAverageAttendanse = function() {
+   
 }
 
-Student.prototype.addAttendance = function(newAttendance){
-    return this.attendance.push(newAttendance);
+Student.prototype.changeCourse = function(newCourse){
+    return this.course = newCourse;
 }
 
-Student.prototype.getAverageAttendanse = function(preciosity = 1) {
-    if(!this.attendance.length) return undefined
-
-    const avga =
-        this.attendance.reduce((sum, v) => sum + v)
-        / this.attendance.length
-
-    const pow = Math.pow(10, preciosity)
-
-    return Math.round(avga * pow) / pow
-}
-
-Student.prototype.getAverageMarks = function(preciosity = 1) {
-    if(!this.marks.length) return undefined
-
-    const avg =
-        this.marks.reduce((sum, v) => sum + v)
-        / this.marks.length
-
-    const pow = Math.pow(10, preciosity)
-
-    return Math.round(avg * pow) / pow
-}
-Student.prototype.changeCours = function(newCours){
-    return this.cours = newCours;
-}
 Student.prototype.getFullInfo = function(){
-    return "Full Name: "+ this.firstName + this.lastName +
-    "\nYear of birth: " + this.year +
-    "\nMarks: " + this.marks +
-    "\nAttendance: " + this.attendance+
-    "\nCours: "+ this.cours;
+    for (let key in Student)
+    if ( typeOff (Student[key]) === 'object'){
+        for(let i in Student[key]){
+            return i + Student[key][i];
+        } }   
+    else  {
+        return key + Student[key];    
+    }
 }
+
 Student.prototype.getAge = function(){
     return new Date().getFullYear() - this.year;
 }
 
 
-const student1 = new Student ("Jhon", "Snow", 1988, undefined, undefined, "Java")
-student1.addMark(5);
-student1.addMark(2);
-student1.addAttendance(1);
-student1.addAttendance(1);
+const student1 = new Student ("Jhon", "Snow", 1988)
+student1.addMark(5, "Java");
+student1.addMark(2, "Java");
+student1.addAttendance(1, "Java");
+student1.addAttendance(1, "Java");
 student1.changeCours("JS");
 
 console.log(student1);
