@@ -1,71 +1,86 @@
-function Student (name, surname, birthday) {
+function Student(name, surname, birthYear) {
     this.name = name;
     this.surname = surname;
-    this.birthday = birthday;
+    this.birthYear = birthYear;
     this.marks = {};
     this.attendance = {};
     this.courses = [];
-   }
-
-   Student.prototype.addMark = function (mark, course) {
-
+  }
+  
+  Student.prototype.addMark = function (mark, course) {
     if (!this.marks[course]) {
-      this.marks[course] = [];  
-   }
-   
-    if (!Object.hasOwn(this.marks, course)) {
       this.marks[course] = [];
     }
-    
     this.marks[course].push(mark);
+  };
+  
+  Student.prototype.addAttendance = function (present, course) {
+    if (!this.attendance[course]) {
+      this.attendance[course] = [];
     }
-
-    Student.prototype.addAttendance = function (present, course) {
- 
-        if (!this.attendance[course]) {
-         this.attendance[course] = [];
-        }      
-       this.attendance[course].push(present)
-       } 
-
-
-       Student.prototype.getAverageMarks = function() {
-    
-}
-       
-       Student.prototype.getAverageAttendanse = function() {
-   
-}
-
-Student.prototype.changeCourse = function(newCourse){
-    return this.course = newCourse;
-}
-
-Student.prototype.getFullInfo = function(){
-    for (let key in Student)
-    if ( typeOff (Student[key]) === 'object'){
-        for(let i in Student[key]){
-            return i + Student[key][i];
-        } }   
-    else  {
-        return key + Student[key];    
+    this.attendance[course].push(present);
+  };
+  
+  Student.prototype.getAverageMarks = function (course) {
+    if (this.marks[course] && this.marks[course].length > 0) {
+      const sum = this.marks[course].reduce((acc, mark) => acc + mark, 0);
+      return sum / this.marks[course].length;
     }
-}
-
-Student.prototype.getAge = function(){
-    return new Date().getFullYear() - this.year;
-}
-
-
-const student1 = new Student ("Jhon", "Snow", 1988)
-student1.addMark(5, "Java");
-student1.addMark(2, "Java");
-student1.addAttendance(1, "Java");
-student1.addAttendance(1, "Java");
-student1.changeCours("JS");
-
-console.log(student1);
-console.log(student1.getAge());
-console.log(student1.getFullInfo());
-console.log(student1.getAverageMarks());
-console.log(student1.getAverageAttendanse());
+    return 0;
+  };
+  
+  Student.prototype.getAverageAttendance = function (course) {
+    if (this.attendance[course] && this.attendance[course].length > 0) {
+      const presentCount = this.attendance[course].filter(present => present).length;
+      return (presentCount / this.attendance[course].length) * 100;
+    }
+    return 0;
+  };
+  
+  Student.prototype.changeCourse = function (newCourse) {
+    this.courses.push(newCourse);
+  };
+  
+  Student.prototype.removeCourse = function (course) {
+    const index = this.courses.indexOf(course);
+    if (index !== -1) {
+      this.courses.splice(index, 1);
+      delete this.marks[course];
+      delete this.attendance[course];
+    }
+  };
+  
+  Student.prototype.getFullInfo = function () {
+    return {
+      name: this.name,
+      surname: this.surname,
+      birthYear: this.birthYear,
+      courses: this.courses,
+      marks: this.marks,
+      attendance: this.attendance,
+    };
+  };
+  
+  Student.prototype.getAge = function () {
+    const currentYear = new Date().getFullYear();
+    return currentYear - this.birthYear;
+  };
+  
+  const student1 = new Student("Jhon", "Snow", 1988);
+  
+  student1.changeCourse("Java");
+  student1.addMark(85, "Java");
+  student1.addMark(92, "Java");
+  student1.addAttendance(true, "Java");
+  student1.addAttendance(false, "Java");
+  
+  student1.changeCourse("JS");
+  student1.addMark(78, "JS");
+  student1.addMark(92, "JS");
+  student1.addAttendance(true, "JS");
+  student1.addAttendance(true, "JS");
+  
+  console.log(student1.getFullInfo());
+  console.log("Age:", student1.getAge());
+  console.log("Average Marks for Math:", student1.getAverageMarks("Java"));
+  console.log("Average Attendance for Math:", student1.getAverageAttendance("Java"));
