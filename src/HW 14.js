@@ -1,103 +1,103 @@
+class Note {
+  constructor(title, content) {
+    this.title = title;
+    this.content = content;
+    this.completed = false;
+  }
+
+  markCompleted() {
+    this.completed = true;
+  }
+
+  markIncomplete() {
+    this.completed = false;
+  }
+}
+
 class TodoList {
-    constructor() {
-      this.notes = [];
-    }
-  
-    addNote(title, content) {
-      if (title && content) {
-        const note = {
-          title,
-          content,
-          created: new Date(),
-          updated: new Date(),
-          done: false,
-        };
-        this.notes.push(note);
-      }
-    }
-  
-    editNote(index, title, content) {
-      if (this.notes[index]) {
-        this.notes[index].title = title;
-        this.notes[index].content = content;
-        this.notes[index].updated = new Date();
-      }
-    }
-  
-    deleteNote(index) {
-      if (this.notes[index]) {
-        this.notes.splice(index, 1);
-      }
-    }
-  
-    markAsDone(index) {
-      if (this.notes[index]) {
-        this.notes[index].done = true;
-      }
-    }
-  
-    getNoteInfo(index) {
-      if (this.notes[index]) {
-        return this.notes[index];
-      }
-      return null;
-    }
-  
-    getNotes() {
-      return this.notes;
-    }
-  
-    getNoteCount() {
-      return this.notes.length;
-    }
-  
-    getRemainingNotesCount() {
-      return this.notes.filter((note) => !note.done).length;
-    }
-  
-    searchNotesByTitle(title) {
-      return this.notes.filter((note) =>
-        note.title.toLowerCase().includes(title.toLowerCase())
-      );
-    }
-  
-    sortNotesByStatus() {
-      return this.notes.sort((a, b) => (a.done === b.done ? 0 : a.done ? 1 : -1));
-    }
-  
-    sortNotesByDateCreated(ascending = true) {
-      return this.notes.sort((a, b) =>
-        ascending
-          ? a.created - b.created
-          : b.created - a.created
-      );
-    }
-  
-    sortNotesByDateUpdated(ascending = true) {
-      return this.notes.sort((a, b) =>
-        ascending
-          ? a.updated - b.updated
-          : b.updated - a.updated
-      );
+  constructor() {
+    this.notes = [];
+  }
+
+  addNote(title, content) {
+    if (title && content) {
+      const note = new Note(title, content);
+      this.notes.push(note);
     }
   }
-  
-  // Приклад використання
-  const todoList = new TodoList();
-  todoList.addNote('Завдання 1', 'Важливо зробити цю роботу.');
-  todoList.addNote('Завдання 2', 'Підготувати презентацію.');
-  todoList.addNote('Завдання 3', 'Прибрати вдома.');
-  console.log('Список нотаток:', todoList.getNotes());
-  
-  todoList.markAsDone(0);
-  console.log('Завдання 1 позначено як виконане.');
-  console.log('Залишилось невиконаних завдань:', todoList.getRemainingNotesCount());
-  
-  const searchResults = todoList.searchNotesByTitle('завдання');
-  console.log('Результати пошуку за "завдання":', searchResults);
-  
-  const sortedByStatus = todoList.sortNotesByStatus();
-  console.log('Сортування за статусом:', sortedByStatus);
-  
-  const sortedByDateCreated = todoList.sortNotesByDateCreated();
-  console.log('Сортування за датою створення:', sortedByDateCreated);
+
+  removeNote(title) {
+    const index = this.notes.findIndex((note) => note.title === title);
+    if (index !== -1) {
+      this.notes.splice(index, 1);
+    }
+  }
+
+  editNote(title, newTitle, newContent) {
+    const note = this.notes.find((note) => note.title === title);
+    if (note) {
+      note.title = newTitle;
+      note.content = newContent;
+    }
+  }
+
+  getNoteInfo(title) {
+    const note = this.notes.find((note) => note.title === title);
+    if (note) {
+      return `Title: ${note.title}\nContent: ${note.content}\nCompleted: ${note.completed}`;
+    }
+  }
+
+  listNotes() {
+    return this.notes.map((note) => note.title);
+  }
+
+  getTotalNotes() {
+    return this.notes.length;
+  }
+
+  getIncompleteNotesCount() {
+    return this.notes.filter((note) => !note.completed).length;
+  }
+
+  searchNotesByName(name) {
+    return this.notes.filter((note) => note.title.includes(name)).map((note) => note.title);
+  }
+
+  sortNotesByStatus(reverse = false) {
+    this.notes.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
+    if (reverse) {
+      this.notes.reverse();
+    }
+  }
+}
+
+
+const todoList = new TodoList();
+
+todoList.addNote("Sport", "go to the gym");
+todoList.addNote("Bills", "pay the bills");
+todoList.addNote("Training", "do homework");
+todoList.notes[0].markCompleted();
+
+
+const foundNotes = todoList.searchNotesByName("Training");
+console.log(foundNotes);
+
+
+todoList.sortNotesByStatus();
+for (const note of todoList.notes) {
+  console.log(`${note.title} - Completed: ${note.completed}`);
+};
+
+
+todoList.getTotalNotes();
+
+const incopmpletesNotes = todoList.getIncompleteNotesCount();
+console.log(incopmpletesNotes);
+
+
+
+
+
+
